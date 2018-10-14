@@ -11,7 +11,7 @@ ${_ASCII_ME}
 ${_V}
 
 Prints out the relative path between paths. These paths can be absolute 
-as well as relative or even non-existant. Trivial (to make), according 
+as well as relative or even non-existent. Trivial (to make), according 
 to its author. Path 1 needs to be more shallow than path 2. The otherway
 around does not (always) work.
 

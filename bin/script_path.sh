@@ -14,7 +14,7 @@ if [[ "${1:-}" =~ ^-h|--help$ ]]; then
 ${_ASCII_ME}
 ${_V}
 
-Prints out the path of where it is located. Must be 
+Exposes SCRIPT_PATH var, the path of where it is located. Must be 
 in the same directory or you should copy-past its code
 into your own perhaps.
 
