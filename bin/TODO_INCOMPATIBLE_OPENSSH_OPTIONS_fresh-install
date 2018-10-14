@@ -1,0 +1,127 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+
+# Check that Homebrew is installed and install if not
+if test ! $(which brew)
+then
+  echo "  Installing Homebrew"
+  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" > "$HOME/brew-install.log"
+fi
+
+# Update any existing homebrew recipes
+brew update
+
+# Upgrade any already installed formulae
+brew upgrade --all
+
+# Install my brew packages (@TODO which bash-completion?)
+brew install \
+ack                     figlet                  less                    mas                     rename \
+adns                    file-formula            lftp                    media-info              rlwrap \
+apr                     findutils               libassuan               mpfr                    rsync \
+apr-util                freetype                libav                   multimarkdown           ruby \
+augeas                  fzf                     libevent                nano                    screen \
+awk                     gawk                    libffi                  ncdu                    sip \
+bash                    gdb                     libgcrypt               ncurses                 sipcalc \
+bash-completion         gdbm                    libgpg-error            neon                    sqlite \
+bash-completion@2       geoip                   libidn                  nettle                  subversion \
+bashdb                  geoipupdate             libidn2                 nmap                    swig \
+binutils                gettext                 libksba                 node@8                  tcl-tk \
+brew-cask-completion    git                     libmagic                npth                    texi2html \
+cadaver                 gmp                     libogg                  oniguruma               tig \
+calc                    gnu-indent              libpng                  openssh                 tmux \
+ccrypt                  gnu-sed                 libsodium               openssl                 tree \
+certbot                 gnu-tar                 libtasn1                opus                    unrar \
+colordiff               gnu-which               libu2f-host             p11-kit                 unzip \
+coreutils               gnupg                   libunistring            pcre                    utf8proc \
+curl                    gnutls                  libusb                  pcre2                   vim \
+detox                   gpatch                  libvorbis               perl                    vimpager \
+dialog                  grep                    libvpx                  perl@5.18               watch \
+diffutils               gzip                    libxml2                 pinentry                wdiff \
+dockutil                handbrake               libyaml                 pinentry-mac            wget \
+dos2unix                hidapi                  libyubikey              pkg-config              x264 \
+ed                      highlight               links                   pv                      xvid \
+emacs                   htop                    lua                     pyqt                    xz \
+expect                  icu4c                   lynx                    python                  yarn \
+faac                    ipcalc                  lz4                     python@2                ykpers \
+fdk-aac                 jq                      lzip                    qrencode                youtube-dl \
+fdupes                  json-c                  m4                      qt                      zsh \
+ffmpeg                  lame                    make                    readline >> "$HOME/brew-install.log"
+
+# Install cask
+brew tap phinze/homebrew-cask
+
+# Install cask packages (@TODO add TinkerTool?, @TODO rename forklift 2/3, @TODO gpg-suite? Isn't that a paid app nowadays?)
+brew cask install \
+actual-odbc-pack    google-hangouts     kaleidoscope        qlmarkdown          scroll-reverser     transmission \
+appcleaner          gpg-suite           keepassxc           qlprettypatch       sonos               trim-enabler \
+expandrive          handbrake                               qlstephen           spectacle           visual-studio-code \
+firefox                                 onyx                qlvideo                                 vlc \
+forklift                                osxfuse             quicklook-csv       superduper          waterfox \
+google-chrome       java                qlcolorcode         quicklook-json      suspicious-package  webpquicklook >> "$HOME/brew-cask-install.log"
+
+# TODO check this out, is 't wat?: 
+# brew cask install beamer
+# brew cask install betterzipql
+# brew cask install coconutbattery
+# brew cask install coteditor
+# brew cask install flux
+# brew cask install franz
+# brew cask install imageoptim
+# brew cask install kakapo
+# brew cask install little-snitch
+# brew cask install marked
+# brew cask install mpv
+# brew cask install qlimagesize
+# brew cask install qlmarkdown
+# brew cask install tg-pro
+# brew cask install the-unarchiver
+# brew cask install viscosity
+# brew cask install xld
+
+echo "Remove brew cruft"
+brew cleanup
+
+echo "Remove cask cruft"
+brew cask cleanup
+
+# Link alfred to apps
+# brew cask alfred link
+
+echo "Install Mac App Store apps"
+
+# Either use mas-cli (https://github.com/argon/mas) or install manually; apps I need: Bear/Simplenote, Tyme, Polarr, Pixelmator, JPEGmini.
+read -p "Press any key to continue… " -n1 -s
+echo '\n'
+
+echo "Login to Mac App Store"
+mas signin <YOUR_APPLE_ID> # (@TODO)
+
+echo "Upgrade installed apps"
+mas upgrade
+
+echo "Install apps"
+mas install \
+    "ShellTo" \
+    "YubiKey Personalization Tool" \
+    "App Factor" \
+    "Browserism" \
+    "BetterSnapTool" \
+    "ForkLift 2" \
+    "Disk Cleanup Pro" \
+    "Plisterine" \
+    "RectLabel" \
+    "Amphetamine" \
+    "VisualGrep" \
+    "Folder Subdivide" \
+    "BitdefenderVirusScanner" \
+    "DaisyDisk" \
+    "goPanel 2" \
+    "Dialog Maker" \
+    "Super Calculator Lite" \
+    "Taxonomy" \
+    "FolderMerge" \
+    "Firewall Guard Pro" \
+    "FileOrganizer" \
+    "DeepVision"
