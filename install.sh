@@ -39,7 +39,7 @@ else
 fi
 
 # should we update
-[[ update ]] && cp -rf $source_dir/install.sh $source_file_tmp && chmod +x $source_file
+[[ $update ]] && cp -rf $source_dir/install.sh $source_file_tmp && chmod +x $source_file
 
 # clear terminal screen
 clear
@@ -52,7 +52,7 @@ echo '-------------------'
 # create bootstrap tmp
 [[ ! -f $source_file ]] && cp -rf $source_dir/install.sh $source_file_tmp
 # update timestamp
-echo 'LAST_EPOCH=$(_current_epoch)' > ~/.osx-bootstrap/.osx-update
+echo "LAST_EPOCH=$(_current_epoch)" > ~/.osx-bootstrap/.osx-update
 
 # include system with param $1
 source $source_dir/core/system.sh $1

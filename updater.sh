@@ -5,7 +5,7 @@ function _current_epoch() {
 }
 
 function _update_osx_update() {
-    echo 'LAST_EPOCH=$(_current_epoch)' > ~/.osx-bootstrap/.osx-update
+    echo "LAST_EPOCH=$(_current_epoch)" > ~/.osx-bootstrap/.osx-update
 }
 
 function _upgrade_osx() {
