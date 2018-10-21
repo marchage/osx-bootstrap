@@ -347,11 +347,13 @@ _simple() {
   start_spinner "Configuring terminal..."
   # Enabling UTF-8 ONLY in Terminal.app and setting the Pro theme by default
   defaults write com.apple.Terminal StringEncodings -array 4
-  defaults write com.apple.Terminal ShellExitAction 2
-  defaults write com.apple.Terminal FontAntialias 1
+  # defaults write com.apple.Terminal ShellExitAction 2
+  # defaults write com.apple.Terminal FontAntialias 1
   defaults write com.apple.Terminal Shell "/bin/zsh"
-  defaults write com.apple.Terminal "Default Window Settings" "Pro"
-  defaults write com.apple.Terminal "Startup Window Settings" "Pro"
+  defaults write com.apple.Terminal "Default Window Settings" Pro
+  defaults write com.apple.Terminal "Startup Window Settings" Pro
+  /usr/libexec/PlistBuddy -c "Set \"Window Settings\":Pro:shellExitAction 0" ~/Library/Preferences/com.apple.Terminal.plist
+  /usr/libexec/PlistBuddy -c "Set \"Window Settings\":Pro:FontAntialias 1" ~/Library/Preferences/com.apple.Terminal.plist
   stop_spinner $?
 
   start_spinner "Configuring time machine..."
@@ -368,6 +370,8 @@ _simple() {
   defaults write com.apple.screensaver askForPasswordDelay -int 0
   # Disable the “Are you sure you want to open this application?” dialog
   defaults write com.apple.LaunchServices LSQuarantine -bool false
+  # @TODO enable various yubikey luxuries
+  
   stop_spinner $?
 
   # disable hibernation a la https://christianvarga.com/how-to-delete-sleepimage-on-macos-high-sierra/

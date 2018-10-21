@@ -17,9 +17,8 @@ source_dir=~/.osx-bootstrap
 applications=/Applications/Downloaded
 downloads=~/Downloads/TMP
 mountpoint=/Volumes/TMP
-software=$source_dir/templates/software.txt
 
-while read line; do
+while read -r line; do
     # strip empty lines and comments
     if [[ $line != *'# '* && $line != '' ]]; then
         

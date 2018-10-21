@@ -29,8 +29,8 @@ function _spinner() {
     # on stop : $2 process exit status
     #           $3 spinner function pid (supplied from stop_spinner)
 
-    local on_success="✅" #"DONE"
-    local on_fail="❌" #"FAIL"
+    local on_success="DONE"
+    local on_fail="FAIL"
     local white="\e[1;37m"
     local green="\e[1;32m"
     local red="\e[1;31m"
@@ -46,7 +46,8 @@ function _spinner() {
 
             # start spinner
             i=1
-            sp='\|/-'
+            #sp='\|/-'
+            sp='⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏'
             delay=${SPINNER_DELAY:-0.15}
 
             while :
